@@ -95,7 +95,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 -- install npm i -g vscode-langservers-extracted@lates
-local servers = { "solargraph", "tsserver", "sorbet", "eslint", "sumneko_lua" }
+local servers = { "solargraph", "tsserver", "sorbet", "eslint" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -122,31 +122,6 @@ nvim_lsp.tsserver.setup({
       })
       ts_utils.setup_client(client)
     end,
-})
-
-nvim_lsp.sumneko_lua.setup({
-  settings = {
-      Lua = {
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.stdpath("config") .. "/lua"] = true,
-          },
-        },
-        diagnostics = {
-          globals = {
-            "global",
-            "vim",
-            "use",
-            "describe",
-            "it",
-            "assert",
-            "before_each",
-            "after_each",
-          },
-        },
-      },
-  },
 })
 
 local with_root_file = function(...)
