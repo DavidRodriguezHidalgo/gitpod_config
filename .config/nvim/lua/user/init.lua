@@ -47,7 +47,6 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "solargraph", "tsserver"
     },
   },
   -- Configure require("lazy").setup() options
